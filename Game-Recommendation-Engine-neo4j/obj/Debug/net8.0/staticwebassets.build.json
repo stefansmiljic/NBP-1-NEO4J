@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "1Rq/IClhZYyRpFKnk6eV6YYBj1W13L5+L3RZJOAHuUc=",
+  "Source": "Game-Recommendation-Engine-neo4j",
+  "BasePath": "_content/Game-Recommendation-Engine-neo4j",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

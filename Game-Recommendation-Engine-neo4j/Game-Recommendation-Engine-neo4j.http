@@ -1,0 +1,6 @@
+@Game_Recommendation_Engine_neo4j_HostAddress = http://localhost:5163
+
+GET {{Game_Recommendation_Engine_neo4j_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
