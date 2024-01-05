@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Models;
+using System.Text.Json;
 
 namespace Controllers
 {
@@ -11,6 +12,8 @@ namespace Controllers
     [Route("api/[controller]")]
     public class GameController : ControllerBase
     {
+        
+        
         private readonly IDriver _driver;
 
         public GameController(IDriver driver)
@@ -24,17 +27,32 @@ namespace Controllers
             {
                 using (var session = _driver.AsyncSession())
                 {
-                    var query = @"CREATE (n:Game { name: $name,
-                                                    genre: $genre,
-                                                    thumbnail: $thumbnail,
-                                                    rating: $rating})";
+                    Game g = new Game();
+                    g.Genres.Add(Genre.Stealth);
+                    g.Genres.Add(Genre.RTS);
+                    var nasjson = JsonSerializer.Serialize<Game>(g);
+                    Console.WriteLine(nasjson);
+                    
+                    var query = @"
+                    CREATE (n:Game 
+                    { 
+                        name: $name,
+                        thumbnail: $thumbnail,
+                        rating: $rating
+                    })
+                    WITH n
+                    UNWIND $genres AS genreName
+                    MERGE (g:Genre { name: genreName })
+                    MERGE (n)-[:HAS_GENRE]->(g)";
+
+                    //TODO: prepraviti cypher kod da radi sa enum
 
                     var parameters = new
                     {
                         name = game.Name,
-                        genre = game.Genres,
                         thumbnail = game.ThumbnailURL,
-                        rating = game.Rating
+                        rating = game.Rating,
+                        genres = game.Genres.Select(g=>g.ToString()).ToArray()
                     };
                     await session.RunAsync(query, parameters);
                     return Ok();
