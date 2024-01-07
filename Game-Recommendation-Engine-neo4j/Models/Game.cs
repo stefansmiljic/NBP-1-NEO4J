@@ -11,8 +11,10 @@ namespace Models
         public string ThumbnailURL{ get; set; }
         public double Rating { get; set; }
         public List<Genre> Genres { get; set; }
+        public Publisher Publisher { get; set; }
 
-        public Game(){
+        public Game()
+        {
             Genres = new List<Genre>();
         }
     }

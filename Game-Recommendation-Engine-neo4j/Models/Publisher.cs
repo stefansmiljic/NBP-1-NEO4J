@@ -9,7 +9,5 @@ namespace Models
     public class Publisher
     {
         public string Name { get; set; }
-        [JsonIgnore]
-        public List<Game> Games { get; set; }
     }
 }

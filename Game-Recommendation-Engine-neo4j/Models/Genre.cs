@@ -10,13 +10,13 @@ namespace Models
         public enum Genre { 
             Action,
             Platform,
-            FPS,
             Puzzle,
             Stealth,
             Battle_Royale,
             MMORPG, 
             Rhythm,
             Fighting,
+            Horror,
             RPG,
             RTS,
             Sandbox,
@@ -27,8 +27,7 @@ namespace Models
             Survival,
             Shooter,
             Sport,
-            ARPG,
-            Tactical,
-            Open_World
+            Open_World,
+            Side_Scrolling
         }
 }

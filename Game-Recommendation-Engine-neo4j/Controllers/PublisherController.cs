@@ -17,7 +17,7 @@ namespace Controllers
         {
             _driver = driver;
         }
-        [HttpPost("CreatePublisher")]
+        /*[HttpPost("CreatePublisher")]
         public async Task<IActionResult> CreatePublisher(Publisher publisher)
         {
             try
@@ -64,80 +64,60 @@ namespace Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }
+        }*/
 
-        /*[HttpDelete]
-        public async Task<IActionResult> RemoveClass(int classId)
+        [HttpGet("GetGamesByPublisher")]
+        public async Task<IActionResult> GetGamesByPublisher(int publisherId)
         {
             try
             {
-                using (var session = _driver.AsyncSession())
-                {
-                    var query = @"MATCH (c:Class) where ID(c)=$cId
-                                OPTIONAL MATCH (c)-[r]-()
-                                DELETE r,c";
-                    var parameters = new { cId = classId };
-                    await session.RunAsync(query, parameters);
-                    return Ok();
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpPut("UpdateClass")]
-        public async Task<IActionResult> UpdateClass(int classId, string newName)
-        {
-            try
-            {
-                using (var session = _driver.AsyncSession())
-                {
-                    var query = @"MATCH (n:Class) WHERE ID(n)=$cId
-                                SET n.name=$name
-                                RETURN n";
-                    var parameters = new { cId = classId,
-                                        name = newName };
-                    await session.RunAsync(query, parameters);
-                    return Ok();
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet("GetAllClasses")]
-        public async Task<IActionResult> GetAllClasses()
-        {
-            try
-            {
-                using (var session = _driver.AsyncSession())
+                using(var session = _driver.AsyncSession())
                 {
                     var result = await session.ExecuteReadAsync(async tx =>
                     {
-                        var query = "MATCH (n:Class) RETURN n";
-                        var cursor = await tx.RunAsync(query);
+                        var query = @"
+                        MATCH (p:Publisher)-[:DISTRIBUTES]->(g:Game)
+                        WHERE ID(p)=$pId
+                        RETURN g";
+                        var cursor = await tx.RunAsync(query, new { pId = publisherId});
                         var nodes = new List<INode>();
 
                         await cursor.ForEachAsync(record =>
                         {
-                            var node = record["n"].As<INode>();
+                            var node = record["g"].As<INode>();
                             nodes.Add(node);
                         });
 
                         return nodes;
                     });
-
                     return Ok(result);
+                }
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> RemovePublisher(int publisherId)
+        {
+            try
+            {
+                using (var session = _driver.AsyncSession())
+                {
+                    var query = @"MATCH (p:Publisher) where ID(p)=$pId
+                                OPTIONAL MATCH (p)-[r]-()
+                                DELETE r,p";
+                    var parameters = new { pId = publisherId };
+                    await session.RunAsync(query, parameters);
+                    return Ok();
                 }
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-        }*/
+        }
     }
 }

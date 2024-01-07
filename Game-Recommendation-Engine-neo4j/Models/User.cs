@@ -11,7 +11,5 @@ namespace Models
         public string Name { get; set; }
         [JsonIgnore]
         public List<Game> Games { get; set; }
-        [JsonIgnore]
-        public List<Publisher> LikedPublishers { get; set; }
     }
 }

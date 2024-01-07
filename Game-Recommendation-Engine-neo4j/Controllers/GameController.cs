@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Models;
 using System.Text.Json;
+using Microsoft.VisualBasic;
 
 namespace Controllers
 {
@@ -27,12 +28,7 @@ namespace Controllers
             {
                 using (var session = _driver.AsyncSession())
                 {
-                    Game g = new Game();
-                    g.Genres.Add(Genre.Stealth);
-                    g.Genres.Add(Genre.RTS);
-                    var nasjson = JsonSerializer.Serialize<Game>(g);
-                    Console.WriteLine(nasjson);
-                    
+                   
                     var query = @"
                     CREATE (n:Game 
                     { 
@@ -43,16 +39,19 @@ namespace Controllers
                     WITH n
                     UNWIND $genres AS genreName
                     MERGE (g:Genre { name: genreName })
-                    MERGE (n)-[:HAS_GENRE]->(g)";
-
-                    //TODO: prepraviti cypher kod da radi sa enum
+                    MERGE (n)-[:HAS_GENRE]->(g)
+                    WITH n
+                    UNWIND $publisher AS publisherName
+                    MERGE (p:Publisher { name: publisherName })
+                    MERGE (p)-[:DISTRIBUTES]->(n)";
 
                     var parameters = new
                     {
                         name = game.Name,
                         thumbnail = game.ThumbnailURL,
                         rating = game.Rating,
-                        genres = game.Genres.Select(g=>g.ToString()).ToArray()
+                        genres = game.Genres.Select(g=>g.ToString()).ToArray(),
+                        publisher = game.Publisher.Name
                     };
                     await session.RunAsync(query, parameters);
                     return Ok();
@@ -63,22 +62,17 @@ namespace Controllers
                 return BadRequest(ex.Message);
             }
         }
-        /*[HttpPost("AssignClass")]
-        public async Task<IActionResult> AssignClass(int classId, int playerId)
+        [HttpDelete("DeleteGame")]
+        public async Task<IActionResult> RemoveGame(int gameId)
         {
             try
             {
                 using (var session = _driver.AsyncSession())
                 {
-                    var query = @"MATCH (n:Class) WHERE ID(n)=$cId
-                                MATCH (m:Player) WHERE ID(m)=$pId
-                                CREATE (m)-[:IS]->(n)";
-
-                    var parameters = new
-                    {
-                        cId = classId,
-                        pId = playerId
-                    };
+                    var query = @"MATCH (g:Game) where ID(g)=$gId
+                                OPTIONAL MATCH (g)-[r]-()
+                                DELETE r,g";
+                    var parameters = new { gId = gameId };
                     await session.RunAsync(query, parameters);
                     return Ok();
                 }
@@ -89,17 +83,17 @@ namespace Controllers
             }
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> RemoveClass(int classId)
+        [HttpDelete("DeleteGenre")]
+        public async Task<IActionResult> RemoveGenre(int genreId)
         {
             try
             {
                 using (var session = _driver.AsyncSession())
                 {
-                    var query = @"MATCH (c:Class) where ID(c)=$cId
-                                OPTIONAL MATCH (c)-[r]-()
-                                DELETE r,c";
-                    var parameters = new { cId = classId };
+                    var query = @"MATCH (g:Genre) where ID(g)=$gId
+                                OPTIONAL MATCH (g)-[r]-()
+                                DELETE r,g";
+                    var parameters = new { gId = genreId };
                     await session.RunAsync(query, parameters);
                     return Ok();
                 }
@@ -110,30 +104,8 @@ namespace Controllers
             }
         }
 
-        [HttpPut("UpdateClass")]
-        public async Task<IActionResult> UpdateClass(int classId, string newName)
-        {
-            try
-            {
-                using (var session = _driver.AsyncSession())
-                {
-                    var query = @"MATCH (n:Class) WHERE ID(n)=$cId
-                                SET n.name=$name
-                                RETURN n";
-                    var parameters = new { cId = classId,
-                                        name = newName };
-                    await session.RunAsync(query, parameters);
-                    return Ok();
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet("GetAllClasses")]
-        public async Task<IActionResult> GetAllClasses()
+        [HttpGet("GetAllGames")]
+        public async Task<IActionResult> GetAllGames()
         {
             try
             {
@@ -141,13 +113,13 @@ namespace Controllers
                 {
                     var result = await session.ExecuteReadAsync(async tx =>
                     {
-                        var query = "MATCH (n:Class) RETURN n";
+                        var query = "MATCH (g:Game) RETURN g";
                         var cursor = await tx.RunAsync(query);
                         var nodes = new List<INode>();
 
                         await cursor.ForEachAsync(record =>
                         {
-                            var node = record["n"].As<INode>();
+                            var node = record["g"].As<INode>();
                             nodes.Add(node);
                         });
 
@@ -161,6 +133,40 @@ namespace Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }*/
+        }
+
+        [HttpPost("GetGamesByGenre")]
+        public async Task<IActionResult> GetGamesByGenre(List<string> genres)
+        {
+            try
+            {
+                using (var session = _driver.AsyncSession())
+                {
+                    var result = await session.ExecuteReadAsync(async tx =>
+                    {
+                        var query = @"UNWIND $genres AS genre WITH genre MATCH (g:Game)-[:HAS_GENRE]->(gen:Genre WHERE gen.name = genre) RETURN DISTINCT g";
+                        var parameters = new {
+                            genres = genres
+                        };
+                        var cursor = await tx.RunAsync(query, parameters);
+                        var nodes = new List<INode>();
+                        
+                        await cursor.ForEachAsync(record =>
+                        {
+                            var node = record["g"].As<INode>();
+                            nodes.Add(node);
+                        });
+
+                        return nodes;
+                    });
+
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
