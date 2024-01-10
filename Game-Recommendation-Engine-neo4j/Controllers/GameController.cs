@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Models;
 using System.Text.Json;
 using Microsoft.VisualBasic;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Controllers
 {
@@ -164,6 +165,47 @@ namespace Controllers
                 }
             }
             catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetAllGenresOfGame")]
+        public async Task<IActionResult> GetAllGenresOfGame(int gameId)
+        {
+            try
+            {
+                using (var session = _driver.AsyncSession())
+                {
+                    var result = await session.ExecuteReadAsync(async tx =>
+                    {
+                        var query = @"
+                                MATCH (g:Game) where ID(g)=$gId
+                                MATCH (g)-[:HAS_GENRE]-(gen:Genre)
+                                RETURN gen
+                                ";
+                        var parameters = new {
+                            gId = gameId
+                        };
+                        var cursor = await tx.RunAsync(query, parameters);
+
+                        var genreNames = new List<string>();
+
+                        await cursor.ForEachAsync(record =>
+                        {
+                            var genreNode = record["gen"].As<INode>();
+                            var genreName = genreNode["name"].As<string>();
+                            genreNames.Add(genreName);
+                        });
+
+                        return genreNames;
+                    });
+
+                    return Ok(result);
+
+                }
+            }
+            catch(Exception ex)
             {
                 return BadRequest(ex.Message);
             }
