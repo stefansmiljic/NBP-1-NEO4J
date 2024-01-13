@@ -210,5 +210,42 @@ namespace Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("GetGamePublisher")]
+        public async Task<IActionResult> GetGamePublisher(int gameId)
+        {
+            try
+            {
+                using (var session = _driver.AsyncSession())
+                {
+                    var result = await session.ExecuteReadAsync(async tx =>
+                    {
+                        var query = @"MATCH (g:Game) where ID(g)=$gId
+                                MATCH (g)-[:DISTRIBUTES]-(pub:Publisher)
+                                RETURN pub";
+                        var parameters = new {
+                            gId = gameId
+                        };
+                        var cursor = await tx.RunAsync(query, parameters);
+                        var publisher = new List<INode>();
+                        var publisherName = "";
+                        await cursor.ForEachAsync(record =>
+                        {
+                            var node = record["pub"].As<INode>();
+                            publisherName = node["name"].As<string>();
+                            publisher.Add(node);
+                        });
+
+                        return publisherName;
+                    });
+
+                    return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -67,9 +67,8 @@ namespace Controllers
                             WITH p
                             MATCH (p:Publisher)-[:DISTRIBUTES]->(g:Game)
                             WHERE ID(g) <> $g1Id
-                            RETURN g
-                            ";
-                    
+                            RETURN g";
+
                     var recommendationParameters = new
                     {
                         name = "user",
