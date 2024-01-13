@@ -114,7 +114,7 @@ namespace Controllers
                 {
                     var result = await session.ExecuteReadAsync(async tx =>
                     {
-                        var query = "MATCH (g:Game) RETURN g";
+                        var query = "MATCH (g:Game) RETURN g ORDER BY g.name ASC";
                         var cursor = await tx.RunAsync(query);
                         var nodes = new List<INode>();
 
@@ -240,6 +240,39 @@ namespace Controllers
                     });
 
                     return Ok(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("UpdateGame/{id}")]
+        public async Task<IActionResult> UpdateGame(int id, string? name, string? thumbnail, double? rating)
+        {
+            try
+            {
+                using (var session = _driver.AsyncSession())
+                {
+                    var query = @"
+                                MATCH (n:Game) WHERE ID(n) = $gId
+                    SET n.name = CASE WHEN $name1 IS NOT NULL THEN $name1 ELSE n.name END,
+                    n.thumbnail = CASE WHEN $thumbnail1 IS NOT NULL THEN $thumbnail1 ELSE n.thumbnail END,
+                    n.rating = CASE WHEN $rating1 IS NOT NULL THEN $rating1 ELSE n.rating END
+                    RETURN n
+                    ";
+
+                    var parameters = new
+                    {
+                        gId = id,
+                        name1 = name,
+                        thumbnail1 = thumbnail,
+                        rating1 = rating
+                    };
+
+                    await session.RunAsync(query, parameters);
+                    return Ok();
                 }
             }
             catch (Exception ex)

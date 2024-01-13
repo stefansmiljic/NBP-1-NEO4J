@@ -61,13 +61,15 @@ namespace Controllers
                             MATCH (g:Game)-[:HAS_GENRE]->(genre)
                             WHERE genre IN genres1 
                             AND NOT (u)-[:PLAYED]->(g) RETURN DISTINCT g
+                            ORDER BY g.rating DESC
                             UNION 
                             MATCH(p:Publisher)-[:DISTRIBUTES]->(g1:Game)
                             WHERE ID(g1) = $g1Id
                             WITH p
                             MATCH (p:Publisher)-[:DISTRIBUTES]->(g:Game)
                             WHERE ID(g) <> $g1Id
-                            RETURN g";
+                            RETURN g
+                            ORDER BY g.rating DESC";
 
                     var recommendationParameters = new
                     {

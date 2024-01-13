@@ -15,6 +15,7 @@
     animation: AnimationName 10s ease infinite;
     margin-left: 10px;
     margin-right: 10px;
+    margin-top: 10px;
     border-radius: 10px;
     flex-direction: column;
     box-shadow: 0px 0px 10px #2a475e;
@@ -30,6 +31,8 @@
 
 .reccomendedGames {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .gameImage {
