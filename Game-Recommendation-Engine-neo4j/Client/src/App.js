@@ -4,6 +4,8 @@ import { useState, useEffect, createElement } from "react";
 import ReactDOM from "react-dom";
 import Select from 'react-select';
 import Igrice from './Igrice';
+import {Route, Routes, BrowserRouter} from "react-router-dom";
+import Admin from './Admin';
 
 function App() {
   const [igriceData, setIgriceData] = useState([]);
@@ -68,7 +70,18 @@ let igrice = [
             <Igrice />
           </div>
         )}
+        
     </div>
   );
+  return (
+    <div>
+      <Routes>
+        <Route  path='/admin'>
+          <Admin />
+        </Route>
+      </Routes>
+    </div>
+  );
+
 }
 export default App;
