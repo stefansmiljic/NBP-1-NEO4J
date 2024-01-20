@@ -25,7 +25,6 @@ html {
     box-shadow: 0px 0px 20px #497396;
     background: linear-gradient(270deg, #52bde72a, #2a475e00, #2a475e00);
     background-size: 400% 400%;
-
     -webkit-animation: AnimationName 3s ease infinite;
     -moz-animation: AnimationName 3s ease infinite;
     animation: AnimationName 10s ease infinite;
@@ -109,7 +108,6 @@ h3 {
     box-shadow: 0px 0px 20px #497396;
     background: linear-gradient(270deg, #52bde72a, #2a475e00, #2a475e00);
     background-size: 400% 400%;
-
     -webkit-animation: AnimationName 3s ease infinite;
     -moz-animation: AnimationName 3s ease infinite;
     animation: AnimationName 10s ease infinite;

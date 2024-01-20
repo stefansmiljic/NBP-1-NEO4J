@@ -1,0 +1,330 @@
+﻿[
+  {
+    "n": {
+      "identity": 0,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://portforward.com/stronghold-2/default.webp",
+        "rating": 0.0,
+        "name": "Stronghold 2"
+      },
+      "elementId": "0"
+    }
+  },
+  {
+    "n": {
+      "identity": 1,
+      "labels": [
+        "Genre"
+      ],
+      "properties": {
+        "name": "RTS"
+      },
+      "elementId": "1"
+    }
+  },
+  {
+    "n": {
+      "identity": 2,
+      "labels": [
+        "Publisher"
+      ],
+      "properties": {
+        "name": "Firefly Studios"
+      },
+      "elementId": "2"
+    }
+  },
+  {
+    "n": {
+      "identity": 3,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://s25.q4cdn.com/103200307/files/doc_multimedia/FC24_standardkeyart_16x9.jpg",
+        "rating": 0.0,
+        "name": "EA FC 2024"
+      },
+      "elementId": "3"
+    }
+  },
+  {
+    "n": {
+      "identity": 4,
+      "labels": [
+        "Genre"
+      ],
+      "properties": {
+        "name": "Sport"
+      },
+      "elementId": "4"
+    }
+  },
+  {
+    "n": {
+      "identity": 5,
+      "labels": [
+        "Publisher"
+      ],
+      "properties": {
+        "name": "EA"
+      },
+      "elementId": "5"
+    }
+  },
+  {
+    "n": {
+      "identity": 6,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://gaming-cdn.com/images/news/articles/2779/cover/efootball-2024-out-today-but-still-without-master-league-cover64f9d7d779648.jpg",
+        "rating": 0.0,
+        "name": "eFootball 2024"
+      },
+      "elementId": "6"
+    }
+  },
+  {
+    "n": {
+      "identity": 7,
+      "labels": [
+        "Publisher"
+      ],
+      "properties": {
+        "name": "Konami"
+      },
+      "elementId": "7"
+    }
+  },
+  {
+    "n": {
+      "identity": 8,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://wallpapercave.com/wp/wp2375496.jpg",
+        "name": "Grand Theft Auto: San Andreas",
+        "rating": 5.0
+      },
+      "elementId": "8"
+    }
+  },
+  {
+    "n": {
+      "identity": 9,
+      "labels": [
+        "Genre"
+      ],
+      "properties": {
+        "name": "Action"
+      },
+      "elementId": "9"
+    }
+  },
+  {
+    "n": {
+      "identity": 10,
+      "labels": [
+        "Genre"
+      ],
+      "properties": {
+        "name": "Open_World"
+      },
+      "elementId": "10"
+    }
+  },
+  {
+    "n": {
+      "identity": 11,
+      "labels": [
+        "Publisher"
+      ],
+      "properties": {
+        "name": "Rockstar"
+      },
+      "elementId": "11"
+    }
+  },
+  {
+    "n": {
+      "identity": 12,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://www.igrandtheftauto.com/img/content/3933.jpg",
+        "name": "Grand Theft Auto V",
+        "rating": 0.0
+      },
+      "elementId": "12"
+    }
+  },
+  {
+    "n": {
+      "identity": 13,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://images4.alphacoders.com/601/601980.jpg",
+        "name": "Grand Theft Auto IV",
+        "rating": 0.0
+      },
+      "elementId": "13"
+    }
+  },
+  {
+    "n": {
+      "identity": 14,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://blog.turtlebeach.com/wp-content/uploads/2022/06/Red-Dead-Redemption-Artwork.jpeg",
+        "name": "Red Dead Redemption",
+        "rating": 4.3
+      },
+      "elementId": "14"
+    }
+  },
+  {
+    "n": {
+      "identity": 15,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://cdn1.epicgames.com/b30b6d1b4dfd4dcc93b5490be5e094e5/offer/RDR2476298253_Epic_Games_Wishlist_RDR2_2560x1440_V01-2560x1440-2a9ebe1f7ee202102555be202d5632ec.jpg",
+        "name": "Red Dead Redemption II",
+        "rating": 4.9
+      },
+      "elementId": "15"
+    }
+  },
+  {
+    "n": {
+      "identity": 16,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://i0.wp.com/phenixxgaming.com/wp-content/uploads/2019/04/LA-Noire-featured-image.jpg?fit=1920%2C1080&ssl=1",
+        "rating": 4.8,
+        "name": "LA Noire"
+      },
+      "elementId": "16"
+    }
+  },
+  {
+    "n": {
+      "identity": 17,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://images5.alphacoders.com/340/340200.jpg",
+        "rating": 4.4,
+        "name": "Max Payne 3"
+      },
+      "elementId": "17"
+    }
+  },
+  {
+    "n": {
+      "identity": 18,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://gametrex.com/wp-content/uploads/2019/04/SPORE-Galactic-Adventures-Free-Download-1.jpg",
+        "rating": 4.6,
+        "name": "Bully"
+      },
+      "elementId": "18"
+    }
+  },
+  {
+    "n": {
+      "identity": 19,
+      "labels": [
+        "Publisher"
+      ],
+      "properties": {
+        "name": "Gearbox Software"
+      },
+      "elementId": "19"
+    }
+  },
+  {
+    "n": {
+      "identity": 21,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://cdn.cloudflare.steamstatic.com/steam/apps/244160/ss_ea9b77342982d63fddc53de39b7ec904c09dc1b8.1920x1080.jpg?t=1698168325",
+        "rating": 3.5,
+        "name": "Homeworld"
+      },
+      "elementId": "21"
+    }
+  },
+  {
+    "n": {
+      "identity": 22,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://cdn1.epicgames.com/min/offer/2560x1440-2560x1440-5e710b93049cbd2125cf0261dcfbf943.jpg",
+        "rating": 4.6,
+        "name": "Hades"
+      },
+      "elementId": "22"
+    }
+  },
+  {
+    "n": {
+      "identity": 23,
+      "labels": [
+        "Game"
+      ],
+      "properties": {
+        "thumbnail": "https://global.discourse-cdn.com/forza/original/3X/2/4/2460d2588ec7885d0d33e99800b3aab06c205cce.jpeg",
+        "rating": 4.2,
+        "name": "Forza Horizon 5"
+      },
+      "elementId": "23"
+    }
+  },
+  {
+    "n": {
+      "identity": 24,
+      "labels": [
+        "Genre"
+      ],
+      "properties": {
+        "name": "Racing"
+      },
+      "elementId": "24"
+    }
+  },
+  {
+    "n": {
+      "identity": 25,
+      "labels": [
+        "Publisher"
+      ],
+      "properties": {
+        "name": "Xbox Game Studios"
+      },
+      "elementId": "25"
+    }
+  }
+]
