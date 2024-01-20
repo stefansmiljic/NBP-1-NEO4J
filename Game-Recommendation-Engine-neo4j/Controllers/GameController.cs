@@ -83,7 +83,7 @@ namespace Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        
         [HttpDelete("DeleteGenre")]
         public async Task<IActionResult> RemoveGenre(int genreId)
         {
@@ -91,11 +91,20 @@ namespace Controllers
             {
                 using (var session = _driver.AsyncSession())
                 {
-                    var query = @"MATCH (g:Genre) where ID(g)=$gId
-                                OPTIONAL MATCH (g)-[r]-()
-                                DELETE r,g";
-                    var parameters = new { gId = genreId };
-                    await session.RunAsync(query, parameters);
+                    var deleteGenreQuery = @"
+                        MATCH (g:Genre) WHERE ID(g) = $gId
+                        DETACH DELETE g";
+
+                    var deleteGenreParameters = new { gId = genreId };
+                    await session.RunAsync(deleteGenreQuery, deleteGenreParameters);
+
+                    var deleteGamesQuery = @"
+                        MATCH (game:Game)
+                        WHERE NOT (game)-[:HAS_GENRE]->()
+                        DETACH DELETE game";
+
+                    await session.RunAsync(deleteGamesQuery);
+
                     return Ok();
                 }
             }

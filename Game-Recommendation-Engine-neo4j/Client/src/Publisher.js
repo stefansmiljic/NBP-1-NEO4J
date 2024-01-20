@@ -11,9 +11,7 @@ export default function Publisher(gameId) {
           const publisher = await fetch(
             "http://localhost:5163/api/Game/GetGamePublisher?gameId=" + intValue
           );
-    
-          console.log("http://localhost:5163/api/Game/GetGamePublisher?gameId=" + intValue);
-    
+        
           if (!publisher.ok) {
             return [];
           }
@@ -25,7 +23,6 @@ export default function Publisher(gameId) {
             setPublisherData(data);
         });
       }, [gameId]);
-      console.log("PUBLISHER: " + publisherData);
       return (
         <div className="publisher">
       {publisherData ? (
