@@ -34,7 +34,6 @@ function Admin() {
       const handleGenresChange = (e) => {
         let value = Array.from(e.target.selectedOptions, option => option.value);
         setGenres(value);
-        console.log("IZABRANI ZANROVI: ", value);
       }
 
       const handleCreate = () => {
@@ -54,14 +53,11 @@ function Admin() {
         }).done(function(res){
             console.log("res ", res);
         });
-        console.log(model);
       };
 
       const handleChange = (selectedOption) => {
         setSelectedGame(selectedOption);
         setGameId(selectedOption.value);
-        //localStorage.setItem("gameId", selectedOption.value);
-        console.log("NAJGLAVNIJI AJ DI: " + selectedOption.value);
       };
 
       async function getAllGames() {

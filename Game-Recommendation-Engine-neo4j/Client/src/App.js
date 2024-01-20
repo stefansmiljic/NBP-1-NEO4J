@@ -16,7 +16,6 @@ function App() {
     setSelectedGame(selectedOption);
     setGameId(selectedOption.value);
     localStorage.setItem("gameId", selectedOption.value);
-    console.log("NAJGLAVNIJI AJ DI: " + selectedOption.value);
   };
 
   async function getAllGames() {
@@ -44,7 +43,6 @@ function App() {
     });
   }, []);
 
-console.log(igriceData);
 let igrice = [
   ...igriceData.map((igra) => ({ value: igra.id, label: igra.properties.name })),
 ];
@@ -66,20 +64,10 @@ let igrice = [
         {selectedGame && (
           <div>
             <p style={{color: 'white'}} className="selectedGameName">{selectedGame.label} related games are:</p>
-            {console.log("Aj di igre: " + localStorage.getItem("gameId").toString())}
             <Igrice />
           </div>
         )}
         
-    </div>
-  );
-  return (
-    <div>
-      <Routes>
-        <Route  path='/admin'>
-          <Admin />
-        </Route>
-      </Routes>
     </div>
   );
 

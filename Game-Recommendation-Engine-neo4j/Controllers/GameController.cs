@@ -83,28 +83,7 @@ namespace Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        /*[HttpDelete("DeleteGenre")]
-        public async Task<IActionResult> RemoveGenre(int genreId)
-        {
-            try
-            {
-                using (var session = _driver.AsyncSession())
-                {
-                    var query = @"MATCH (g:Genre) where ID(g)=$gId
-                                OPTIONAL MATCH (g)-[r]-()
-                                DELETE r,g";
-                    var parameters = new { gId = genreId };
-                    await session.RunAsync(query, parameters);
-                    return Ok();
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }*/
-
+        
         [HttpDelete("DeleteGenre")]
         public async Task<IActionResult> RemoveGenre(int genreId)
         {

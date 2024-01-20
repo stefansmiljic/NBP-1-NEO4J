@@ -9,14 +9,11 @@ export default function Igrice() {
 
   useEffect(() => {
     const gameId = localStorage.getItem("gameId");
-    console.log("Promenjen gameId: ", gameId);
 
     async function predloziFetch() {
       const predlozi = await fetch(
         "http://localhost:5163/api/Recommendation/GetRecommendations?game1Id=" + gameId
       );
-
-      console.log("AJ DI IZ VRACANJA PREDLOGA: " + gameId);
 
       if (!predlozi.ok) {
         return [];
@@ -41,7 +38,6 @@ export default function Igrice() {
               <label>{game.properties.name}</label>
               <Publisher gameId={game.id}/>
               <label>Rating: {game.properties.rating}</label>
-              {console.log("Predlozena igra: " + game.properties.name)}
             </div>
           )
         })}
