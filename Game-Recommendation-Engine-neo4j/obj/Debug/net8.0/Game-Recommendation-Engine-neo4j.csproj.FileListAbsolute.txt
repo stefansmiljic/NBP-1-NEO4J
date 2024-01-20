@@ -73,3 +73,6 @@ D:\NBP-1-NEO4J\Game-Recommendation-Engine-neo4j\obj\Debug\net8.0\ref\Game-Recomm
 D:\NBP-1-NEO4J\Game-Recommendation-Engine-neo4j\bin\Debug\net8.0\Client\package-lock.json
 D:\NBP-1-NEO4J\Game-Recommendation-Engine-neo4j\bin\Debug\net8.0\Client\package.json
 D:\NBP-1-NEO4J\Game-Recommendation-Engine-neo4j\bin\Debug\net8.0\Client\public\manifest.json
+D:\AKADEMSKI MATERIJAL\NBP PROJEKAT NEO4J\NBP-1-NEO4J\Game-Recommendation-Engine-neo4j\bin\Debug\net8.0\Client\public\manifest.json
+D:\AKADEMSKI MATERIJAL\NBP PROJEKAT NEO4J\NBP-1-NEO4J\Game-Recommendation-Engine-neo4j\bin\Debug\net8.0\Client\package-lock.json
+D:\AKADEMSKI MATERIJAL\NBP PROJEKAT NEO4J\NBP-1-NEO4J\Game-Recommendation-Engine-neo4j\bin\Debug\net8.0\Client\package.json

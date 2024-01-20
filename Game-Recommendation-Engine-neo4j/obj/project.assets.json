@@ -582,19 +582,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\stank\\.nuget\\packages\\": {}
+    "C:\\Users\\Stefan\\.nuget\\packages\\": {},
+    "D:\\Visual Studio Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\NBP-1-NEO4J\\Game-Recommendation-Engine-neo4j\\Game-Recommendation-Engine-neo4j.csproj",
+      "projectUniqueName": "D:\\AKADEMSKI MATERIJAL\\NBP PROJEKAT NEO4J\\NBP-1-NEO4J\\Game-Recommendation-Engine-neo4j\\Game-Recommendation-Engine-neo4j.csproj",
       "projectName": "Game-Recommendation-Engine-neo4j",
-      "projectPath": "D:\\NBP-1-NEO4J\\Game-Recommendation-Engine-neo4j\\Game-Recommendation-Engine-neo4j.csproj",
-      "packagesPath": "C:\\Users\\stank\\.nuget\\packages\\",
-      "outputPath": "D:\\NBP-1-NEO4J\\Game-Recommendation-Engine-neo4j\\obj\\",
+      "projectPath": "D:\\AKADEMSKI MATERIJAL\\NBP PROJEKAT NEO4J\\NBP-1-NEO4J\\Game-Recommendation-Engine-neo4j\\Game-Recommendation-Engine-neo4j.csproj",
+      "packagesPath": "C:\\Users\\Stefan\\.nuget\\packages\\",
+      "outputPath": "D:\\AKADEMSKI MATERIJAL\\NBP PROJEKAT NEO4J\\NBP-1-NEO4J\\Game-Recommendation-Engine-neo4j\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\Visual Studio Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\stank\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Stefan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
